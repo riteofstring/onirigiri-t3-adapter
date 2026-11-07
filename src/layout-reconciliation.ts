@@ -25,7 +25,10 @@ function savedPanesByLiveProject(
   const liveProjectIds = new Set(live.projects.map((project) => project.id));
   const panesByProject = new Map<string, readonly WorkspacePane[]>();
   for (const row of saved.rows) {
-    if (liveProjectIds.has(row.projectId) && !panesByProject.has(row.projectId)) {
+    if (
+      liveProjectIds.has(row.projectId) &&
+      !panesByProject.has(row.projectId)
+    ) {
       panesByProject.set(row.projectId, row.panes);
     }
   }

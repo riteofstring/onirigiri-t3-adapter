@@ -1,0 +1,5 @@
+saveExact: true
+strictPeerDependencies: true
+minimumReleaseAge: 43200
+trustPolicy: no-downgrade
+onlyBuiltDependencies: []

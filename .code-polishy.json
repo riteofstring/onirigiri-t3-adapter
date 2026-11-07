@@ -4,7 +4,10 @@
     "kind": "library",
     "capabilities": []
   },
-  "scope": {},
+  "scope": {
+    "entryPoints": ["src/index.ts"],
+    "development": ["tests/**"]
+  },
   "quality": {
     "allowComments": false
   },
@@ -16,35 +19,81 @@
         "src/**",
         "tests/**",
         "package.json",
-        "tsconfig.json"
+        "tsconfig.json",
+        "pnpm-workspace.yaml",
+        ".node-version"
       ]
     }
   ],
-  "checks": [],
+  "checks": [
+    {
+      "name": "source-package",
+      "provides": ["build"],
+      "modules": ["layout-adapter"],
+      "argv": ["pnpm", "build"],
+      "runOn": ["build"],
+      "timeoutSeconds": 120
+    }
+  ],
   "tests": {
-    "ownership": [],
+    "ownership": [
+      {
+        "paths": ["tests/**"],
+        "module": "layout-adapter",
+        "focusedSuite": "layout-reconciliation",
+        "executionSuite": "layout-reconciliation"
+      }
+    ],
     "suites": [
       {
         "name": "layout-reconciliation",
         "kind": "unit",
         "scope": "module",
-        "modules": [
-          "layout-adapter"
-        ],
-        "argv": [
-          "pnpm",
-          "test"
-        ],
-        "runOn": [
-          "focused",
-          "recommended",
-          "full"
-        ],
+        "modules": ["layout-adapter"],
+        "argv": ["pnpm", "test"],
+        "runOn": ["focused", "recommended", "full"],
         "cost": "quick",
+        "timeoutSeconds": 120,
+        "paths": ["tests/**"]
+      },
+      {
+        "name": "layout-package-full",
+        "kind": "unit",
+        "scope": "repository",
+        "argv": ["pnpm", "test"],
+        "runOn": ["full"],
+        "cost": "quick",
+        "paths": ["tests/**"],
         "timeoutSeconds": 120
       }
     ]
   },
-  "supplyChain": {},
-  "exceptions": []
+  "supplyChain": {
+    "allowedDependencyProtocols": [],
+    "allowedLicenses": [
+      "0BSD",
+      "Apache-2.0",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "ISC",
+      "MIT",
+      "MPL-2.0"
+    ],
+    "releaseArtifacts": [
+      {
+        "name": "node",
+        "versionFile": ".node-version",
+        "source": "node-runtime"
+      }
+    ]
+  },
+  "exceptions": [],
+  "documentation": {
+    "design": [
+      {
+        "path": "docs/design/layout-adapter.md",
+        "module": "layout-adapter"
+      }
+    ]
+  }
 }

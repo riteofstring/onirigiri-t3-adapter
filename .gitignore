@@ -1,2 +1,4 @@
 /.code-polishy-reports/
 /.code-polishy-artifacts/
+
+node_modules/

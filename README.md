@@ -1,8 +1,40 @@
 # Onirigiri workspace adapter
 
-Private workspace package used by `apps/spatial`. It exports
-`reconcileWorkspaceLayout` and its layout types directly from TypeScript
-source, following the other T3 workspace packages. No separate build is needed.
+Standalone repository for `@riteofstring/onirigiri-t3`, consumed by T3's
+`apps/spatial`. It exports `reconcileWorkspaceLayout` and its layout types
+directly from TypeScript source. No separate build or runtime dependency is
+needed. The package remains private.
+
+## Development
+
+Use the Node version in `.node-version` and the exact package manager in
+`package.json`.
+
+```sh
+./code-polishyw setup
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm test
+./code-polishyw check --all
+```
+
+The six reconciliation tests run independently of T3. Code Polishy's sealed
+JavaScript tooling supplies formatting, lint, type, dead-code and dependency
+checks; no T3 checkout or root test configuration is required.
+
+The complete adoption check is `./code-polishyw gate`. Supplemental hardening
+and Gherkin are not configured. Source comments are disabled; non-local
+rationale belongs in [the design document](docs/design/layout-adapter.md).
+
+`pnpm build` creates a source-package archive in `.code-polishy-artifacts/package`.
+It packages the public TypeScript files, README and license; it does not change
+the source exports or publish the package.
+
+For local T3 development, keep this checkout at the sibling path
+`onirigiri-t3-adapter`. The spatial package consumes it with
+`link:../../../onirigiri-t3-adapter`; its design document records the validated
+adapter commit. Keep that checkout clean and on the recorded commit when
+reproducing a T3 build. The package is compiled into the application, with no
+runtime repository access.
 
 ## Layout reconciliation
 

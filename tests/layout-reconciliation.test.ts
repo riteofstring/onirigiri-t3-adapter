@@ -1,6 +1,9 @@
-import { describe, expect, it } from "vite-plus/test";
+import { describe, expect, it } from "vitest";
 
-import { reconcileWorkspaceLayout, type WorkspaceLayout } from "../src/index.js";
+import {
+  reconcileWorkspaceLayout,
+  type WorkspaceLayout,
+} from "../src/index.js";
 import type { LiveThread } from "../src/workspace-layout.js";
 
 function thread(id: string, projectId: string, archived = false): LiveThread {
@@ -9,7 +12,10 @@ function thread(id: string, projectId: string, archived = false): LiveThread {
 
 function rowThreads(layout: WorkspaceLayout): Record<string, string[]> {
   return Object.fromEntries(
-    layout.rows.map((row) => [row.projectId, row.panes.map((pane) => pane.threadId)]),
+    layout.rows.map((row) => [
+      row.projectId,
+      row.panes.map((pane) => pane.threadId),
+    ]),
   );
 }
 
@@ -76,13 +82,21 @@ describe("reconcileWorkspaceLayout", () => {
           { projectId: "gone", panes: [{ threadId: "g1" }] },
           {
             projectId: "web",
-            panes: [{ threadId: "t1" }, { threadId: "deleted" }, { threadId: "t2" }],
+            panes: [
+              { threadId: "t1" },
+              { threadId: "deleted" },
+              { threadId: "t2" },
+            ],
           },
         ],
       },
       {
         projects: [{ id: "web" }],
-        threads: [thread("g1", "gone"), thread("t1", "web", true), thread("t2", "web")],
+        threads: [
+          thread("g1", "gone"),
+          thread("t1", "web", true),
+          thread("t2", "web"),
+        ],
       },
     );
 
@@ -101,7 +115,11 @@ describe("reconcileWorkspaceLayout", () => {
     );
 
     expect(rowThreads(layout)).toEqual({ web: [], docs: ["d1"], api: [] });
-    expect(layout.rows.map((row) => row.projectId)).toEqual(["web", "docs", "api"]);
+    expect(layout.rows.map((row) => row.projectId)).toEqual([
+      "web",
+      "docs",
+      "api",
+    ]);
   });
 
   it("moves a thread saved in another project's row back to its own row and keeps one pane per thread", () => {
