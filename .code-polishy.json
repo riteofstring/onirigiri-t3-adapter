@@ -1,0 +1,50 @@
+{
+  "version": 4,
+  "project": {
+    "kind": "library",
+    "capabilities": []
+  },
+  "scope": {},
+  "quality": {
+    "allowComments": false
+  },
+  "portability": {},
+  "modules": [
+    {
+      "name": "layout-adapter",
+      "paths": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        "tsconfig.json"
+      ]
+    }
+  ],
+  "checks": [],
+  "tests": {
+    "ownership": [],
+    "suites": [
+      {
+        "name": "layout-reconciliation",
+        "kind": "unit",
+        "scope": "module",
+        "modules": [
+          "layout-adapter"
+        ],
+        "argv": [
+          "pnpm",
+          "test"
+        ],
+        "runOn": [
+          "focused",
+          "recommended",
+          "full"
+        ],
+        "cost": "quick",
+        "timeoutSeconds": 120
+      }
+    ]
+  },
+  "supplyChain": {},
+  "exceptions": []
+}
