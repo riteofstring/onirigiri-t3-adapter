@@ -1,2 +1,8 @@
 export { reconcileWorkspaceLayout } from "./layout-reconciliation.js";
-export type { LiveWorkspace, WorkspaceLayout } from "./workspace-layout.js";
+export type {
+  LiveThread,
+  LiveWorkspace,
+  ProjectRow,
+  WorkspaceLayout,
+  WorkspacePane,
+} from "./workspace-layout.js";

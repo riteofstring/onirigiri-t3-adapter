@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 
 import {
   reconcileWorkspaceLayout,
+  type LiveThread,
   type WorkspaceLayout,
 } from "../src/index.js";
-import type { LiveThread } from "../src/workspace-layout.js";
 
 function thread(id: string, projectId: string, archived = false): LiveThread {
   return { id, projectId, archived };
