@@ -29,12 +29,12 @@ rationale belongs in [the design document](docs/design/layout-adapter.md).
 It packages the public TypeScript files, README and license; it does not change
 the source exports or publish the package.
 
-For local T3 development, keep this checkout at the sibling path
-`onirigiri-t3-adapter`. The spatial package consumes it with
-`link:../../../onirigiri-t3-adapter`; its design document records the validated
-adapter commit. Keep that checkout clean and on the recorded commit when
-reproducing a T3 build. The package is compiled into the application, with no
-runtime repository access.
+T3's `apps/spatial` consumes this package as an archive vendored in
+`apps/spatial/vendor`, named with the commit it was packed from; its design
+document records that commit. To update it, run `pnpm build`, replace the
+archive there, update its path in `apps/spatial/package.json` and reinstall.
+The package is compiled into the application, with no runtime repository
+access.
 
 ## Layout reconciliation
 
