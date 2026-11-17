@@ -1,7 +1,8 @@
 # Onirigiri workspace adapter
 
-Standalone repository for `@riteofstring/onirigiri-t3`, consumed by T3's
-`apps/spatial`. It exports `reconcileWorkspaceLayout` and its layout types
+Standalone repository for `@riteofstring/onirigiri-t3`, consumed by `apps/spatial`
+in [Onirigiri for T3 Code](https://github.com/riteofstring/t3code-onirigiri), a
+fork of T3 Code. It exports `reconcileWorkspaceLayout` and its layout types
 directly from TypeScript source. No separate build or runtime dependency is
 needed. The package remains private.
 
@@ -29,7 +30,7 @@ rationale belongs in [the design document](docs/design/layout-adapter.md).
 It packages the public TypeScript files, README and license; it does not change
 the source exports or publish the package.
 
-T3's `apps/spatial` consumes this package as an archive vendored in
+The fork's `apps/spatial` consumes this package as an archive vendored in
 `apps/spatial/vendor`, named with the commit it was packed from; its design
 document records that commit. To update it, run `pnpm build`, replace the
 archive there, update its path in `apps/spatial/package.json` and reinstall.
